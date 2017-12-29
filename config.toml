@@ -264,6 +264,7 @@ defaultContentLanguageInSubdir = false
   url = "#contact"
   weight = 6
 
+
 # Taxonomies.
 [taxonomies]
   tag = "tags"
