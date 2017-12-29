@@ -260,6 +260,7 @@ defaultContentLanguageInSubdir = false
   weight = 5
 
 
+
 # Taxonomies.
 [taxonomies]
   tag = "tags"
