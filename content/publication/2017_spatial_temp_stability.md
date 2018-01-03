@@ -63,8 +63,3 @@ image = "headers/bubbles-wide.jpg"
 # caption = "My caption :smile:"
 
 +++
-<<<<<<< HEAD
-=======
-
-# More detail can easily be written here using *Markdown* and $\rm \LaTeX$ math code.
->>>>>>> 72c7bb09264d7dbffed394fccd8808529cb2e002
