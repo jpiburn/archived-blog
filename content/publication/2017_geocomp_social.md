@@ -19,7 +19,7 @@ publication_types = ["1"]
 
 # Publication name and optional abbreviated version.
 publication = "In Advances in Geocomputation: Geocomputation 2015--The 13th International Conference"
-publication_short = "In Advances in Geocomputation"
+publication_short = "In *Advances in Geocomputation*"
 
 # Abstract and optional shortened version.
 abstract = "The demand for building occupancy estimation continues to grow in a wide array of application domains, such as population distribution modeling, green building technologies, public safety, and natural hazards loss analytics. While much has been gained in using survey diaries, sensor technologies, and dasymetric modeling, the volume and velocity of social media data provide a unique opportunity to measure and model occupancy patterns with unprecedented temporal and spatial resolution. If successful, patterns or occupancy curves could describe the fluctuations in population across a 24 h period for a single building or a class of building types. Although social media hold great promise in responding to this need, a number of challenges exist regarding representativeness and fitness for purpose that, left unconsidered, could lead to erroneous conclusions about true building occupancy. As a mode of discussion, this chapter presents an explicit social media model that assists in delineating and articulating the specific challenges and limitations of using social media. It concludes by proposing a research agenda for further work and engagement in this domain."
@@ -45,7 +45,7 @@ url_pdf = "https://link.springer.com/content/pdf/10.1007%2F978-3-319-22786-3_6.p
 # url_slides = "#"
 # url_video = "#"
 # url_poster = "#"
-# url_source = "#"
+url_source = "https://link.springer.com/chapter/10.1007/978-3-319-22786-3_6"
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.

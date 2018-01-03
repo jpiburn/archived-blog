@@ -44,7 +44,7 @@ url_pdf = "https://link.springer.com/content/pdf/10.1007%2F978-3-319-22786-3_18.
 # url_slides = "#"
 # url_video = "#"
 # url_poster = "#"
-# url_source = "#"
+url_source = "https://link.springer.com/chapter/10.1007/978-3-319-22786-3_18"
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.

@@ -44,11 +44,11 @@ url_pdf = "https://www.isprs-ann-photogramm-remote-sens-spatial-inf-sci.net/IV-4
 # url_slides = "#"
 # url_video = "#"
 # url_poster = "#"
-# url_source = "#"
+url_source = "https://www.isprs-ann-photogramm-remote-sens-spatial-inf-sci.net/IV-4-W2/47/2017/"
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "Journal", url = "https://www.isprs-ann-photogramm-remote-sens-spatial-inf-sci.net/IV-4-W2/47/2017/"}]
+#url_custom = [{name = "Journal", url = "https://www.isprs-ann-photogramm-remote-sens-spatial-inf-sci.net/IV-4-W2/47/2017/"}]
 
 # Does the content use math formatting?
 math = true
