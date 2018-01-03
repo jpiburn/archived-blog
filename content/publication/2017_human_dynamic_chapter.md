@@ -1,7 +1,7 @@
 +++
 title = "Utilizing Geo-Located Sensors and Social Media Insight for Research in Population Dynamics and Land Classification"
-date = "2017"
-#date = "2017-01-01"
+#date = "2017"
+date = "2017-01-01"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["G Thakur", "K Sims", "H Mao", "J Piburn", 
