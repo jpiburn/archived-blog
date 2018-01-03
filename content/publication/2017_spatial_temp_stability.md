@@ -3,7 +3,7 @@ title = "A Simple Spatially Weighted Measure of Temporal Stability for Data with
 date = "2017-10-17"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["J Piburn", "R Stewart", "A morton"]
+authors = ["J Piburn", "R Stewart", "A Morton"]
 
 # Publication type.
 # Legend:
