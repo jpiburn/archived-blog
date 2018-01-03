@@ -29,6 +29,14 @@ filter_default = 0
   tag = "*"
   
 [[filter]]
+  name = "WSTAMP"
+  tag = ".wstamp"
+  
+[[filter]]
+  name = "Sports Analytics"
+  tag = ".sports-analytics"
+  
+[[filter]]
   name = "Deep Learning"
   tag = ".deep-learning"
 
