@@ -1,6 +1,6 @@
 +++
 title = "A Simple Spatially Weighted Measure of Temporal Stability for Data with Limited Temporal Observations"
-date = "2017-08-17"
+date = "2017-10-17"
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["J Piburn", "R Stewart", "A morton"]
@@ -33,7 +33,7 @@ selected = true
 # Projects (optional).
 #   Associate this publication with one or more of your projects.
 #   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = ["example-external-project"]
+#projects = ["example-external-project"]
 
 # Links (optional).
 url_pdf = "https://www.isprs-ann-photogramm-remote-sens-spatial-inf-sci.net/IV-4-W2/47/2017/isprs-annals-IV-4-W2-47-2017.pdf"
