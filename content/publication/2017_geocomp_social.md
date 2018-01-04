@@ -18,7 +18,7 @@ authors = ["R Stewart", "J Piburn", "E Weber", "M Urban", "A Morton",
 publication_types = ["1"]
 
 # Publication name and optional abbreviated version.
-publication = "In Advances in Geocomputation: Geocomputation 2015--The 13th International Conference"
+publication = "In *Advances in Geocomputation: Geocomputation 2015--The 13th International Conference*"
 publication_short = "In *Advances in Geocomputation*"
 
 # Abstract and optional shortened version.

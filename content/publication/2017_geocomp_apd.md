@@ -17,8 +17,8 @@ authors = ["J Piburn", "R Stewart", "A Morton"]
 publication_types = ["1"]
 
 # Publication name and optional abbreviated version.
-publication = "In Advances in Geocomputation: Geocomputation 2015--The 13th International Conference"
-publication_short = "In Advances in Geocomputation"
+publication = "In *Advances in Geocomputation: Geocomputation 2015--The 13th International Conference*"
+publication_short = "In *Advances in Geocomputation*"
 
 # Abstract and optional shortened version.
 abstract = "Frequently questions we ask cannot be answered by simply looking at one indicator. To answer the question asking which countries are similar to one another economically over the past 20 years is not just a matter of looking at trends in gross domestic product (GDP) or unemployment rates; “economically” encompasses much more than just one or two measures. In this chapter, we propose a method called attribute portfolio distance (APD) and a variant trend only APD (TO-APD) to address questions such as these. APD/TO-APD is a spatiotemporal extension of a data-mining algorithm called dynamic time warping used to measure the similarity between two univariate time series. We provide an example of this method by answering the question, Which countries are most similar to Ukraine economically from 1994–2013?"

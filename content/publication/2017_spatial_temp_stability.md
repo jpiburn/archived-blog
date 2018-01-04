@@ -17,8 +17,8 @@ authors = ["J Piburn", "R Stewart", "A Morton"]
 publication_types = ["2"]
 
 # Publication name and optional abbreviated version.
-publication = "In ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences"
-publication_short = "In ISPRS Annals"
+publication = "In *ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences*"
+publication_short = "In *ISPRS Annals*"
 
 # Abstract and optional shortened version.
 abstract = "Identifying erratic or unstable time-series is an area of interest to many fields. Recently, there have been successful developments towards this goal. These new developed methodologies however come from domains where it is typical to have several thousand or more temporal observations. This creates a challenge when attempting to apply these methodologies to time-series with much fewer temporal observations such as for socio-cultural understanding, a domain where a typical time series of interest might only consist of 20-30 annual observations. Most existing methodologies simply cannot say anything interesting with so few data points, yet researchers are still tasked to work within in the confines of the data. Recently a method for characterizing instability in a time series with limitedtemporal observations was published. This method, Attribute Stability Index (ASI), uses an approximate entropy based method tocharacterize a time series’ instability. In this paper we propose an explicitly spatially weighted extension of the Attribute StabilityIndex. By including a mechanism to account for spatial autocorrelation, this work represents a novel approach for the characterizationof space-time instability. As a case study we explore national youth male unemployment across the world from 1991-2014."

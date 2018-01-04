@@ -17,8 +17,8 @@ authors = ["A Morton", "N Nagle", "J Piburn", "R Stewart", "R McManamay"]
 publication_types = ["1"]
 
 # Publication name and optional abbreviated version.
-publication = "In Advances in Geocomputation: Geocomputation 2015--The 13th International Conference"
-publication_short = "In Advances in Geocomputation"
+publication = "In *Advances in Geocomputation: Geocomputation 2015--The 13th International Conference*"
+publication_short = "In *Advances in Geocomputation*"
 
 # Abstract and optional shortened version.
 abstract = "As urban areas continue to grow and evolve in a world of increasing environmental awareness, the need for detailed information regarding residential energy consumption patterns has become increasingly important. Though current modeling efforts mark significant progress in the effort to better understand the spatial distribution of energy consumption, the majority of techniques are highly dependent on region-specific data sources and often require building- or dwelling-level details that are not publicly available for many regions in the United States. Furthermore, many existing methods do not account for errors in input data sources and may not accurately reflect inherent uncertainties in model outputs. We propose an alternative and more general hybrid approach to high-resolution residential electricity consumption modeling by merging a dasymetric model with a complementary machine learning algorithm. The method’s flexible data requirement and statistical framework ensure that the model both is applicable to a wide range of regions and considers errors in input data sources."
