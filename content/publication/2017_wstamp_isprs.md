@@ -19,8 +19,8 @@ authors = ["J Piburn", "R Stewart", "A Myers", "A Sorokine", "E Axley",
 publication_types = ["2"]
 
 # Publication name and optional abbreviated version.
-publication = "In ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences"
-publication_short = "In ISPRS Annals"
+publication = "In *ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences*"
+publication_short = "In *ISPRS Annals*"
 
 # Abstract and optional shortened version.
 abstract = "Spatiotemporal (ST) analytics applied to major data sources such as the World Bank and World Health Organization has shown tremendous value in shedding light on the evolution of cultural, health, economic, and geopolitical landscapes on a global level. WSTAMP engages this opportunity by situating analysts, data, and analytics together within a visually rich and computationally rigorous online analysis environment. Since introducing WSTAMP at the First International Workshop on Spatiotemporal Computing, several transformative advances have occurred. Collaboration with human computer interaction experts led to a complete interface redesign that deeply immerses the analyst within a ST context, significantly increases visual and textual content, provides navigational crosswalks for attribute discovery, substantially reduce mouse and keyboard actions, and supports user data uploads. Secondly, the database has been expanded to include over 16,000 attributes, 50 years of time, and 200+ nation states and redesigned to support non-annual, non-national, city, and interaction data. Finally, two new analytics are implemented for analyzing large portfolios of multi-attribute data and measuring the behavioral stability of regions along different dimensions. These advances required substantial new approaches in design, algorithmic innovations, and increased computational efficiency. We report on these advances and inform how others may freely access the tool."
