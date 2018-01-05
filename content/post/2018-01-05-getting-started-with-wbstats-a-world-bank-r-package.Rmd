@@ -60,6 +60,7 @@ new_cache <- wbcache()
 knitr::kable(head(wbstats::wb_cachelist$indicators[2000:2005, ]))
 ```
 
+
 By default the search is done over the `indicator` and `indicatorDesc` fields and returns the columns `indicatorID` and `indicator` of the matching rows. The `indicatorID` values are inputs into `wb()`, the function for downloading the data. To return all columns for the `indicators` data frame, you can set `extra = TRUE`.
 ```{r}
 library(wbstats)

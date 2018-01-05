@@ -1,0 +1,10 @@
+/*************************************************
+ *  From An Example Green Theme for Hugo Academic
+ *  Set `custom_css = ["green.css"] in `config.toml`.
+ *  Then save this file as `/static/css/green.css` relative to your website root (i.e. not in `themes/academic` directory).
+ *	https://gist.github.com/gcushen/d5525a4506b9ccf83f2bce592a895495
+ *  https://github.com/gcushen/hugo-academic
+ **************************************************/
+
+.r {overflow-y:hidden;}
+
