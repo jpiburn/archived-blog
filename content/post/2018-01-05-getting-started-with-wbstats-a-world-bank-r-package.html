@@ -60,101 +60,202 @@ new_cache &lt;- wbcache()</code></pre>
 <div id="search-available-data-with-wbsearch" class="section level2">
 <h2>Search available data with <code>wbsearch()</code></h2>
 <p><code>wbsearch()</code> searches through the <code>indicators</code> data frame to find indicators that match a search pattern. An example of the structure of this data frame is below</p>
-<table>
+<pre><code>## Warning: package &#39;knitr&#39; was built under R version 3.4.2</code></pre>
+<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.4.3</code></pre>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: auto;overflow-y: scroll; height:1000px; ">
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 10px; margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th></th>
-<th align="left">indicatorID</th>
-<th align="left">indicator</th>
-<th align="left">unit</th>
-<th align="left">indicatorDesc</th>
-<th align="left">sourceOrg</th>
-<th align="left">sourceID</th>
-<th align="left">source</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+indicatorID
+</th>
+<th style="text-align:left;">
+indicator
+</th>
+<th style="text-align:left;">
+unit
+</th>
+<th style="text-align:left;">
+indicatorDesc
+</th>
+<th style="text-align:left;">
+sourceOrg
+</th>
+<th style="text-align:left;">
+sourceID
+</th>
+<th style="text-align:left;">
+source
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>2000</td>
-<td align="left">PRT.PDCL.IND10A.ALLD.ZS</td>
-<td align="left">PDI-10a Donor missions co-ordinated (percent)</td>
-<td align="left">NA</td>
-<td align="left">Encourage shared analysis on field missions work including diagnostic reviews that are joint. Donor co-ordinated missions focuses only on the proportion of (i) missions undertaken jointly by two or more donors, or (ii) missions undertaken by one donor on behalf of another (delegated co-operation). Indicators 3 to 12 (but not Indictor 8) are drawn from the Survey on Monitoring the Paris Declaration for each respective year.</td>
-<td align="left">Organization for Economic Co-operation and Development (www.oecd.org/dac/effectiveness/monitoring).</td>
-<td align="left">11</td>
-<td align="left">Africa Development Indicators</td>
+<tr>
+<td style="text-align:left;">
+2000
+</td>
+<td style="text-align:left;">
+PRT.PDCL.IND10A.ALLD.ZS
+</td>
+<td style="text-align:left;">
+PDI-10a Donor missions co-ordinated (percent)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Encourage shared analysis on field missions work including diagnostic reviews that are joint. Donor co-ordinated missions focuses only on the proportion of (i) missions undertaken jointly by two or more donors, or (ii) missions undertaken by one donor on behalf of another (delegated co-operation). Indicators 3 to 12 (but not Indictor 8) are drawn from the Survey on Monitoring the Paris Declaration for each respective year.
+</td>
+<td style="text-align:left;">
+Organization for Economic Co-operation and Development (www.oecd.org/dac/effectiveness/monitoring).
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+Africa Development Indicators
+</td>
 </tr>
-<tr class="even">
-<td>2001</td>
-<td align="left">PRT.PDCL.IND1.IDX</td>
-<td align="left">PDI-1 Country with operational national development strategies (rating)</td>
-<td align="left">NA</td>
-<td align="left">Country’s national development strategy is linked to medium-term expenditure framework and reflected in annual budgets. The degree to which governments take the lead in co-ordinating aid-funded activities is the subject of a specific commitment in the Paris Declaration. It is also a variable that seems to be subject to significant changes over time. Another dimension of ownership is the degree to which countries have development strategies that are clear and well operationalised, so that development efforts are effective and there is a robust basis for the alignment of aid with country policies. This is based on the World Bank’s Results-Based National Development Strategies: Assessment and Challenges Ahead Report. Categorical where “A” assigned a value of 1; “B” assigned a value of 2; “C” assigned a value of 3; “D” assigned a value of 4; “E” assigned a value of 5; and “N/A” assigned a value of 6. Indicators 3 to 12 (but not Indictor 8) are drawn from the Survey on Monitoring the Paris Declaration for each respective year.</td>
-<td align="left">Organization for Economic Co-operation and Development (www.oecd.org/dac/effectiveness/monitoring).</td>
-<td align="left">11</td>
-<td align="left">Africa Development Indicators</td>
+<tr>
+<td style="text-align:left;">
+2001
+</td>
+<td style="text-align:left;">
+PRT.PDCL.IND1.IDX
+</td>
+<td style="text-align:left;">
+PDI-1 Country with operational national development strategies (rating)
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Country’s national development strategy is linked to medium-term expenditure framework and reflected in annual budgets. The degree to which governments take the lead in co-ordinating aid-funded activities is the subject of a specific commitment in the Paris Declaration. It is also a variable that seems to be subject to significant changes over time. Another dimension of ownership is the degree to which countries have development strategies that are clear and well operationalised, so that development efforts are effective and there is a robust basis for the alignment of aid with country policies. This is based on the World Bank’s Results-Based National Development Strategies: Assessment and Challenges Ahead Report. Categorical where “A” assigned a value of 1; “B” assigned a value of 2; “C” assigned a value of 3; “D” assigned a value of 4; “E” assigned a value of 5; and “N/A” assigned a value of 6. Indicators 3 to 12 (but not Indictor 8) are drawn from the Survey on Monitoring the Paris Declaration for each respective year.
+</td>
+<td style="text-align:left;">
+Organization for Economic Co-operation and Development (www.oecd.org/dac/effectiveness/monitoring).
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+Africa Development Indicators
+</td>
 </tr>
-<tr class="odd">
-<td>2002</td>
-<td align="left">PRJ.POP.ALL.S1.MF</td>
-<td align="left">Projection: Population in thousands by highest level of educational attainment. Incomplete Primary. Total</td>
-<td align="left">NA</td>
-<td align="left">Total population in thousands that has pre-primary education or incomplete primary education as the highest level of educational attainment. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">12</td>
-<td align="left">Education Statistics</td>
+<tr>
+<td style="text-align:left;">
+2002
+</td>
+<td style="text-align:left;">
+PRJ.POP.ALL.S1.MF
+</td>
+<td style="text-align:left;">
+Projection: Population in thousands by highest level of educational attainment. Incomplete Primary. Total
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Total population in thousands that has pre-primary education or incomplete primary education as the highest level of educational attainment. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Education Statistics
+</td>
 </tr>
-<tr class="even">
-<td>2003</td>
-<td align="left">PRJ.POP.ALL.S1.MA</td>
-<td align="left">Projection: Population in thousands by highest level of educational attainment. Incomplete Primary. Male</td>
-<td align="left">NA</td>
-<td align="left">Total population in thousands that has pre-primary education or incomplete primary education as the highest level of educational attainment. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">12</td>
-<td align="left">Education Statistics</td>
+<tr>
+<td style="text-align:left;">
+2003
+</td>
+<td style="text-align:left;">
+PRJ.POP.ALL.S1.MA
+</td>
+<td style="text-align:left;">
+Projection: Population in thousands by highest level of educational attainment. Incomplete Primary. Male
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Total population in thousands that has pre-primary education or incomplete primary education as the highest level of educational attainment. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Education Statistics
+</td>
 </tr>
-<tr class="odd">
-<td>2004</td>
-<td align="left">PRJ.POP.ALL.S1.FE</td>
-<td align="left">Projection: Population in thousands by highest level of educational attainment. Incomplete Primary. Female</td>
-<td align="left">NA</td>
-<td align="left">Total population in thousands that has pre-primary education or incomplete primary education as the highest level of educational attainment. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">12</td>
-<td align="left">Education Statistics</td>
+<tr>
+<td style="text-align:left;">
+2004
+</td>
+<td style="text-align:left;">
+PRJ.POP.ALL.S1.FE
+</td>
+<td style="text-align:left;">
+Projection: Population in thousands by highest level of educational attainment. Incomplete Primary. Female
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Total population in thousands that has pre-primary education or incomplete primary education as the highest level of educational attainment. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Education Statistics
+</td>
 </tr>
-<tr class="even">
-<td>2005</td>
-<td align="left">PRJ.POP.ALL.NED.MF</td>
-<td align="left">Projection: Population in thousands by highest level of educational attainment. No Education. Total</td>
-<td align="left">NA</td>
-<td align="left">Total population in thousands that has never attended school. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a></td>
-<td align="left">12</td>
-<td align="left">Education Statistics</td>
+<tr>
+<td style="text-align:left;">
+2005
+</td>
+<td style="text-align:left;">
+PRJ.POP.ALL.NED.MF
+</td>
+<td style="text-align:left;">
+Projection: Population in thousands by highest level of educational attainment. No Education. Total
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Total population in thousands that has never attended school. Projections are based on collected census and survey data for the base year (around 2010) and the Medium Shared Socioeconomic Pathways (SSP2) projection model. The SSP2 is a middle-of-the-road scenario that combines medium fertility with medium mortality, medium migration, and the Global Education Trend (GET) education scenario. For more information and other projection models, consult the Wittgenstein Centre for Demography and Global Human Capital’s website: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+Wittgenstein Centre for Demography and Global Human Capital: <a href="http://www.oeaw.ac.at/vid/dataexplorer/" class="uri">http://www.oeaw.ac.at/vid/dataexplorer/</a>
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+Education Statistics
+</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>By default the search is done over the <code>indicator</code> and <code>indicatorDesc</code> fields and returns the columns <code>indicatorID</code> and <code>indicator</code> of the matching rows. The <code>indicatorID</code> values are inputs into <code>wb()</code>, the function for downloading the data. To return all columns for the <code>indicators</code> data frame, you can set <code>extra = TRUE</code>.</p>
 <pre class="r"><code>library(wbstats)
 
 unemploy_vars &lt;- wbsearch(pattern = &quot;unemployment&quot;)
 head(unemploy_vars)</code></pre>
-<pre><code>##    indicatorID
-## 35   WP15177.9
-## 36   WP15177.8
-## 37   WP15177.7
-## 38   WP15177.6
-## 39   WP15177.5
-## 40   WP15177.4
-##                                                                                        indicator
-## 35         Received government transfers in the past year, income, richest 60% (% ages 15+) [w2]
-## 36         Received government transfers in the past year, income, poorest 40% (% ages 15+) [w2]
-## 37 Received government transfers in the past year, secondary education or more (% ages 15+) [w2]
-## 38   Received government transfers in the past year, primary education or less (% ages 15+) [w2]
-## 39                Received government transfers in the past year, older adults (% ages 25+) [w2]
-## 40              Received government transfers in the past year, young adults (% ages 15-24) [w2]</code></pre>
 <p>Other fields can be searched by simply changing the <code>fields</code> parameter. For example</p>
 <pre class="r"><code>library(wbstats)
 
@@ -198,12 +299,12 @@ gini_vars &lt;- wbsearch(pattern = &quot;Coeficiente de Gini&quot;, cache = wb_c
 
 head(gini_vars)</code></pre>
 <pre><code>##           indicatorID                                       indicator
-## 14405   3.2.TheilInd1                   Índice de Theil, GE(1),Urbano
-## 14407        3.2.Gini                                    Gini, Urbano
-## 14418   3.1.TheilInd1                   Índice de Theil, GE(1), Rural
-## 14420        3.1.Gini                                     Gini, Rural
-## 14423   3.0.TheilInd1                          Índice de Theil, GE(1)
-## 14432 3.0.Gini_nozero Coeficiente de Gini (Ingreso diferente de cero)</code></pre>
+## 12958   3.2.TheilInd1                   Índice de Theil, GE(1),Urbano
+## 12960        3.2.Gini                                    Gini, Urbano
+## 12971   3.1.TheilInd1                   Índice de Theil, GE(1), Rural
+## 12973        3.1.Gini                                     Gini, Rural
+## 12976   3.0.TheilInd1                          Índice de Theil, GE(1)
+## 12985 3.0.Gini_nozero Coeficiente de Gini (Ingreso diferente de cero)</code></pre>
 </div>
 <div id="downloading-data-with-wb" class="section level2">
 <h2>Downloading data with <code>wb()</code></h2>

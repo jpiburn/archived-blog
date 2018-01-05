@@ -57,18 +57,27 @@ new_cache <- wbcache()
 
 `wbsearch()` searches through the `indicators` data frame to find indicators that match a search pattern. An example of the structure of this data frame is below
 ```{r, echo=FALSE, results='asis'}
-knitr::kable(head(wbstats::wb_cachelist$indicators[2000:2005, ]))
+# knitr::kable(head(wbstats::wb_cachelist$indicators[2000:2005, ]))
+library(knitr)
+library(kableExtra)
+options(knitr.table.format = "html")
+
+kable(wbstats::wb_cachelist$indicators[2000:2005, ]) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 10) %>%
+    scroll_box(height = "1000px",
+             extra_css = "overflow-x: auto;")
 ```
 
-
 By default the search is done over the `indicator` and `indicatorDesc` fields and returns the columns `indicatorID` and `indicator` of the matching rows. The `indicatorID` values are inputs into `wb()`, the function for downloading the data. To return all columns for the `indicators` data frame, you can set `extra = TRUE`.
-```{r}
+```{r, results='hide'}
 library(wbstats)
 
 unemploy_vars <- wbsearch(pattern = "unemployment")
 head(unemploy_vars)
 
 ```
+
 
 Other fields can be searched by simply changing the `fields` parameter. For example
 ```{r}

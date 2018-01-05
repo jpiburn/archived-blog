@@ -14,82 +14,38 @@ tags: []
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-_Devore & Berk Section 2.1 pg. 55_
+```{r, echo=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+options(knitr.table.format = "html")
 
-## 1. Ann and Bev have each applied for several jobs at a local university. Let $A$ be the event that Ann is hired and let $B$ be the event that Bev is hired. Express in terms of $A$ and $B$ the events
+kable(wbstats::wb_cachelist$indicators[1:10, ]) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 10) %>%
+  scroll_box(height = "1000px",
+             #width = "720px",
+             extra_css = "overflow-x: auto;")
+```
 
-$$A = \textit{Ann is hired}$$
-$$A' = \textit{Ann is not hired}$$
-$$B = \textit{Bev is hired}$$
-$$B' = \textit{Bev is not hired}$$
 
+By default the search is done over the `indicator` and `indicatorDesc` fields and returns the columns `indicatorID` and `indicator` of the matching rows. The `indicatorID` values are inputs into `wb()`, the function for downloading the data. To return all columns for the `indicators` data frame, you can set `extra = TRUE`.
+```{r, results='hide'}
+library(wbstats)
 
-### a. Ann is hired but not Bev.
-$$A \cap B'$$
+unemploy_vars <- wbsearch(pattern = "unemployment")
+head(unemploy_vars)
 
-### b. At least one of them is hired.
-$$A \cup B$$
+```
 
-### c. Exactly one of them is hired.
-$$(A \cap B') \cup (A' \cap B)$$
+```{r, echo=FALSE}
+library(wbstats)
 
-## 2. Two voters, Al and Bill, are each choosing between one of three candidates – 1, 2, and 3 – who are running for city council. An experimental outcome specifies both Al’s choice and Bill’s choice, e.g. the pair (3,2).
+unemploy_vars <- wbsearch(pattern = "unemployment", extra = TRUE)
 
-### a. List all elements of $S$.
+kable(unemploy_vars) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+                font_size = 10) %>%
+  scroll_box(height = "400px",
+             extra_css = "overflow-x: auto;")
 
-$$S = \{(1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (3,1), (3,2), (3,3)\}$$
-
-### b. List all outcomes in the event A that Al and Bill make the same choice.
-$$A = \{(1,1), (2,2), (3,3)\}$$
-
-### c. List all outcomes in the event B that neither of them vote for candidate 2.
-$$B = \{(1,1), (1,3), (3,1), (3,3)\}$$
-
-## 5. Three components are connected to form a system as shown in the accompanying diagram. Because the components in the 2–3 subsystem are connected in parallel, that subsystem will function if at least one of the two individual components functions. For the entire system to function, component 1 must function and so must the 2–3 subsystem. The experiment consists of determining the condition of each component [$S$ (success) for a functioning component and $F$ (failure) for a nonfunctioning component].
-
-### a. What outcomes are contained in the event $A$ that exactly two out of the three components function?
-
-$$A = \{SSF, SFS, FSS\}$$
-
-### b. What outcomes are contained in the event $B$ that at least two of the components function?
-
-$$B = \{SSS, SSF, SFS, FSS\}$$
-
-### c. What outcomes are contained in the event $C$ that the system functions?
-
-$$C = \{SSS, SFS, SSF\}$$
-
-### d. List outcomes in $C', A \cup C, A \cap C, B \cup C,$ and $B \cap C$.
-
-$$C' = \{SFF, FFF, FSS, FFS, FSF\}$$
-$$A \cup C = \{SSF, SFS, FSS, SSS\}$$
-$$A \cap C = \{SFS, FSS\}$$
-$$B \cup C = B = \{SSS, SSF, SFS, FSS\}$$
-$$B \cap C = C = \{SSS, SFS, SSF\}$$
-
-## 6. Each of a sample of four home mortgages is classified as fixed rate ($F$) or variable rate ($V$).
-
-### a. What are the 16 outcomes in $S$?
-*$S$ divded into $S_{1-8}$ and $S_{9-16}$ for formatting reasons*
-
-$$S = S_{1-8} \cup S_{9-16}$$
-$$S_{1-8} = \{FFFF, FFFV, FFVF, FFVV, FVFF, FVFV, FVVF, FVVV\}$$
-$$S_{9-16} = \{VFFF, VFFV, VFVF, VFVV, VVFF, VVFV, VVVF, VVVV\}$$
-
-### b. Which outcomes are in the event that exactly three of the selected mortgages are fixed rate?
-$$B = \{FFFV, FFVF, FVFF, VFFF\}$$
-
-### c. Which outcomes are in the event that all four mortgages are of the same type?
-$$C = \{FFFF, VVVV\}$$
-
-### d. Which outcomes are in the event that at most one of the four is a variable-rate mortgage?
-$$D = \{FFFF, FFFV, FFVF, FVFF, VFFF\}$$
-
-### e. What is the union of the events in parts (c) and (d), and what is the intersection of these two events?
-
-$$C \cup D = \{FFFF, FFFV, FFVF, FVFF, VFFF, VVVV\}$$
-$$C \cap D = \{FFFF\}$$
-
-### f. What are the union and intersection of the two events in parts (b) and (c)?
-$$B \cup C = \{FFFF, FFFV, FFVF, FVFF, VFFF, VVVV\}$$
-$$B \cap C = \emptyset$$
+```
