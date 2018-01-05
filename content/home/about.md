@@ -36,4 +36,4 @@ weight = 5
 
 # Biography
 
-Hello. I'm currently a data scientist in the Computational Sciences and Engineering Division at Oak Ridge National Laboratory where I use data science to help answer questions related to socio-economic development, urban dynamics, and clean energy among other things. My background is in geographic information science and spatial statistics... and finish this bio later
+Hello. I'm Jesse. I am a data scientist in the Computational Sciences and Engineering Division at Oak Ridge National Laboratory where I use data science to help answer questions related to socio-economic development, urban dynamics, clean energy, and other interesting domains. My background is in spatial statistics and geographic information science and I am currently pursuing my PhD in Data Science and Engineering. My areas of interest include data science, spatiotemporal analytics, machine learning, and statistical software development. In my spare time I enjoy sports analytics, Bob Ross, and feeding ducks.
