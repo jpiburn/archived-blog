@@ -9,7 +9,7 @@ title = "WSTAMP"
 summary = "World Spatio-Temporal Analytics and Mapping Project"
 
 # Optional image to display on homepage (relative to `static/img/` folder).
-image_preview = "bubbles.jpg"
+image_preview = "wstamp.jpg"
 
 # Tags: can be used for filtering projects.
 # Example: `tags = ["machine-learning", "deep-learning"]`
