@@ -13,10 +13,10 @@ image_preview = "bubbles.jpg"
 
 # Tags: can be used for filtering projects.
 # Example: `tags = ["machine-learning", "deep-learning"]`
-tags = ["wstamp"]
+tags = ["data-science"]
 
 # Optional external URL for project (replaces project detail page).
-external_link = ""
+external_link = "https://wstamp.ornl.gov"
 
 # Does the project detail page use math formatting?
 math = false

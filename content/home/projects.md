@@ -29,8 +29,8 @@ filter_default = 0
   tag = "*"
   
 [[filter]]
-  name = "WSTAMP"
-  tag = ".wstamp"
+  name = "Data Science"
+  tag = ".data-science"
   
 [[filter]]
   name = "Sports Analytics"
