@@ -1,0 +1,423 @@
+---
+title: Getting Started with wbstats A World Bank R Package
+author: Jesse Piburn
+date: '2018-01-05'
+slug: getting-started-with-wbstats-a-world-bank-r-package
+categories:
+  - R
+tags:
+  - R
+---
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The World Bank<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> is a tremendous source of global socio-economic data; spanning several decades and dozens of topics, it has the potential to shed light on numerous global issues. To help provide access to this rich source of information, The World Bank themselves, provide a well structured RESTful API<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>. While this API is very useful for integration into web services and other high-level applications, it becomes quickly overwhelming for researchers who have neither the time nor the expertise to develop software to interface with the API. This leaves the researcher to rely on manual bulk downloads of spreadsheets of the data they are interested in. This too is can quickly become overwhelming, as the work is manual, time consuming, and not easily reproducible. The goal of the <code>wbstats</code> R-package is to provide a bridge between these alternatives and allow researchers to focus on their research questions and not the question of accessing the data. The <code>wbstats</code> R-package allows researchers to quickly search and download the data of their particular interest in a programmatic and reproducible fashion; this facilitates a seamless integration into their workflow and allows analysis to be quickly rerun on different areas of interest and with realtime access to the latest available data.</p>
+<div id="highlighted-features-of-the-wbstats-r-package" class="section level3">
+<h3>Highlighted features of the <code>wbstats</code> R-package:</h3>
+<ul>
+<li>Uses version 2 of the World Bank API that provides access to more indicators and metadata than the previous API version</li>
+<li>Access to all annual, quarterly, and monthly data available in the API</li>
+<li>Support for searching and downloading data in multiple languages</li>
+<li>Access to the World Bank Data Catalog Metadata, providing among other information; update schedules and supported languages</li>
+<li>Ability to return <code>POSIXct</code> dates for easy integration into plotting and time-series analysis techniques</li>
+<li>Returns data in either long (default) or wide format for direct integration with packages like <code>ggplot2</code> and <code>dplyr</code></li>
+<li>Support for Most Recent Value queries</li>
+<li>Support for <code>grep</code> style searching for data descriptions and names</li>
+<li>Ability to download data not only by country, but by aggregates as well, such as High Income or South Asia</li>
+<li>Ability to specify <code>countries_only</code> or <code>aggregates</code> when querying data</li>
+</ul>
+</div>
+</div>
+<div id="getting-started" class="section level1">
+<h1>Getting Started</h1>
+<p>Unless you know the country and indicator codes that you want to download the first step would be searching for the data you are interested in. <code>wbsearch()</code> provides <code>grep</code> style searching of all available indicators from the World Bank API and returns the indicator information that matches your query.</p>
+<p>To access what countries or regions are available you can use the <code>countries</code> data frame from either <code>wb_cachelist</code> or the saved return from <code>wbcache()</code>. This data frame contains relevant information regarding each country or region. More information on how to use this for downloading data is covered later.</p>
+<div id="finding-available-data-with-wb_cachelist" class="section level2">
+<h2>Finding available data with <code>wb_cachelist</code></h2>
+<p>For performance and ease of use, a cached version of useful information is provided with the <code>wbstats</code> R-package. This data is called <code>wb_cachelist</code> and provides a snapshot of available countries, indicators, and other relevant information. <code>wb_cachelist</code> is by default the the source from which <code>wbsearch()</code> and <code>wb()</code> uses to find matching information. The structure of <code>wb_cachelist</code> is as follows</p>
+<pre class="r"><code>library(wbstats)
+
+str(wb_cachelist, max.level = 1)</code></pre>
+<pre><code>## List of 7
+##  $ countries  :&#39;data.frame&#39;: 304 obs. of  18 variables:
+##  $ indicators :&#39;data.frame&#39;: 16978 obs. of  7 variables:
+##  $ sources    :&#39;data.frame&#39;: 43 obs. of  8 variables:
+##  $ datacatalog:&#39;data.frame&#39;: 238 obs. of  29 variables:
+##  $ topics     :&#39;data.frame&#39;: 21 obs. of  3 variables:
+##  $ income     :&#39;data.frame&#39;: 7 obs. of  3 variables:
+##  $ lending    :&#39;data.frame&#39;: 4 obs. of  3 variables:</code></pre>
+</div>
+<div id="accessing-updated-available-data-with-wbcache" class="section level2">
+<h2>Accessing updated available data with <code>wbcache()</code></h2>
+<p>For the most recent information on available data from the World Bank API <code>wbcache()</code> downloads an updated version of the information stored in <code>wb_cachelist</code>. <code>wb_cachelist</code> is simply a saved return of <code>wbcache(lang = &quot;en&quot;)</code>. To use this updated information in <code>wbsearch()</code> or <code>wb()</code>, set the <code>cache</code> parameter to the saved <code>list</code> returned from <code>wbcache()</code>. It is always a good idea to use this updated information to insure that you have access to the latest available information, such as newly added indicators or data sources.</p>
+<pre class="r"><code>library(wbstats)
+
+# default language is english
+new_cache &lt;- wbcache()</code></pre>
+</div>
+<div id="search-available-data-with-wbsearch" class="section level2">
+<h2>Search available data with <code>wbsearch()</code></h2>
+<p><code>wbsearch()</code> searches through the <code>indicators</code> data frame to find indicators that match a search pattern. An example of the structure of this data frame is below</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">indicatorID</th>
+<th align="left">indicator</th>
+<th align="left">unit</th>
+<th align="left">indicatorDesc</th>
+<th align="left">sourceOrg</th>
+<th align="left">sourceID</th>
+<th align="left">source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4310</td>
+<td align="left">UIS.E.5.B</td>
+<td align="left">Enrolment in tertiary education, ISCED 5 programmes, both sexes (number)</td>
+<td align="left">NA</td>
+<td align="left">Total number of students enrolled in public and private short-cycle tertiary education programmes (ISCED 5).</td>
+<td align="left">UNESCO Institute for Statistics</td>
+<td align="left">12</td>
+<td align="left">Education Statistics</td>
+</tr>
+<tr class="even">
+<td>4311</td>
+<td align="left">UIS.E.4.PU.F</td>
+<td align="left">Enrolment in post-secondary non-tertiary education, public institutions, female (number)</td>
+<td align="left">NA</td>
+<td align="left">Total number of females enrolled in public post-secondary non-tertiary education institutions regardless of age. Public education Institutions are controlled and managed directly by a public education authority or agency of the country where it is located or by a government agency directly or by a governing body (council, committee etc.), most of whose members are either appointed by a public authority of the country where it is located or elected by public franchise.</td>
+<td align="left">UNESCO Institute for Statistics</td>
+<td align="left">12</td>
+<td align="left">Education Statistics</td>
+</tr>
+</tbody>
+</table>
+<p>By default the search is done over the <code>indicator</code> and <code>indicatorDesc</code> fields and returns the columns <code>indicatorID</code> and <code>indicator</code> of the matching rows. The <code>indicatorID</code> values are inputs into <code>wb()</code>, the function for downloading the data. To return all columns for the <code>indicators</code> data frame, you can set <code>extra = TRUE</code>.</p>
+<pre class="r"><code>library(wbstats)
+
+unemploy_vars &lt;- wbsearch(pattern = &quot;unemployment&quot;)
+head(unemploy_vars)</code></pre>
+<pre><code>##    indicatorID
+## 35   WP15177.9
+## 36   WP15177.8
+## 37   WP15177.7
+## 38   WP15177.6
+## 39   WP15177.5
+## 40   WP15177.4
+##                                                                                        indicator
+## 35         Received government transfers in the past year, income, richest 60% (% ages 15+) [w2]
+## 36         Received government transfers in the past year, income, poorest 40% (% ages 15+) [w2]
+## 37 Received government transfers in the past year, secondary education or more (% ages 15+) [w2]
+## 38   Received government transfers in the past year, primary education or less (% ages 15+) [w2]
+## 39                Received government transfers in the past year, older adults (% ages 25+) [w2]
+## 40              Received government transfers in the past year, young adults (% ages 15-24) [w2]</code></pre>
+<p>Other fields can be searched by simply changing the <code>fields</code> parameter. For example</p>
+<pre class="r"><code>library(wbstats)
+
+blmbrg_vars &lt;- wbsearch(pattern = &quot;Bloomberg&quot;, fields = &quot;sourceOrg&quot;)
+head(blmbrg_vars)</code></pre>
+<pre><code>##        indicatorID                             indicator
+## 262   WHEAT_US_HRW        Wheat, US, HRW, $/mt, current$
+## 766       SUGAR_US         Sugar, US, cents/kg, current$
+## 2563  RUBBER1_MYSG Rubber, Singapore, cents/kg, current$
+## 9488    GFDD.SM.01                Stock price volatility
+## 9496    GFDD.OM.02 Stock market return (%, year-on-year)
+## 12003       BARLEY                Barley, $/mt, current$</code></pre>
+<p>Regular expressions are also supported.</p>
+<pre class="r"><code>library(wbstats)
+
+# &#39;poverty&#39; OR &#39;unemployment&#39; OR &#39;employment&#39;
+povemply_vars &lt;- wbsearch(pattern = &quot;poverty|unemployment|employment&quot;)
+
+head(povemply_vars)</code></pre>
+<pre><code>##    indicatorID
+## 35   WP15177.9
+## 36   WP15177.8
+## 37   WP15177.7
+## 38   WP15177.6
+## 39   WP15177.5
+## 40   WP15177.4
+##                                                                                        indicator
+## 35         Received government transfers in the past year, income, richest 60% (% ages 15+) [w2]
+## 36         Received government transfers in the past year, income, poorest 40% (% ages 15+) [w2]
+## 37 Received government transfers in the past year, secondary education or more (% ages 15+) [w2]
+## 38   Received government transfers in the past year, primary education or less (% ages 15+) [w2]
+## 39                Received government transfers in the past year, older adults (% ages 25+) [w2]
+## 40              Received government transfers in the past year, young adults (% ages 15-24) [w2]</code></pre>
+<p>The default cached data in <code>wb_cachelist</code> is in English. To search indicators in a different language, you can download an updated copy of <code>wb_cachelist</code> using <code>wbcache()</code>, with the <code>lang</code> parameter set to the language of interest and then set this as the <code>cache</code> parameter in <code>wbsearch()</code>. Other languages are supported in so far as they are supported by the original data sources. Some sources provide full support for other languages, while some have very limited support. If the data source does not have a translation for a certain field or indicator then the result is <code>NA</code>, this may result in a varying number matches depending upon the language you select.</p>
+<pre class="r"><code>library(wbstats)
+
+# download wbcache in spanish
+wb_cachelist_es &lt;- wbcache(lang = &quot;es&quot;)
+
+gini_vars &lt;- wbsearch(pattern = &quot;Coeficiente de Gini&quot;, cache = wb_cachelist_es)
+
+head(gini_vars)</code></pre>
+<pre><code>##           indicatorID                                       indicator
+## 13822   3.2.TheilInd1                   Índice de Theil, GE(1),Urbano
+## 13824        3.2.Gini                                    Gini, Urbano
+## 13835   3.1.TheilInd1                   Índice de Theil, GE(1), Rural
+## 13837        3.1.Gini                                     Gini, Rural
+## 13840   3.0.TheilInd1                          Índice de Theil, GE(1)
+## 13849 3.0.Gini_nozero Coeficiente de Gini (Ingreso diferente de cero)</code></pre>
+</div>
+<div id="downloading-data-with-wb" class="section level2">
+<h2>Downloading data with <code>wb()</code></h2>
+<p>Once you have found the set of indicators that you would like to explore further, the next step is downloading the data with <code>wb()</code>. The following examples are meant to highlight the different ways in which <code>wb()</code> can be used and demonstrate the major optional parameters.</p>
+<p>The default value for the <code>country</code> parameter is a special value of <code>all</code> which as you might expect, returns data on the selected <code>indicator</code> for every available country or region.</p>
+<pre class="r"><code>library(wbstats)
+
+# Population, total
+pop_data &lt;- wb(indicator = &quot;SP.POP.TOTL&quot;, startdate = 2000, enddate = 2002)
+
+head(pop_data)</code></pre>
+<pre><code>##   iso3c date     value indicatorID         indicator iso2c
+## 1   ARB 2002 296026575 SP.POP.TOTL Population, total    1A
+## 2   ARB 2001 289850357 SP.POP.TOTL Population, total    1A
+## 3   ARB 2000 283832016 SP.POP.TOTL Population, total    1A
+## 4   CSS 2002   6623792 SP.POP.TOTL Population, total    S3
+## 5   CSS 2001   6577216 SP.POP.TOTL Population, total    S3
+## 6   CSS 2000   6530691 SP.POP.TOTL Population, total    S3
+##                  country
+## 1             Arab World
+## 2             Arab World
+## 3             Arab World
+## 4 Caribbean small states
+## 5 Caribbean small states
+## 6 Caribbean small states</code></pre>
+<p>If you are interested in only some subset of countries or regions you can pass along the specific codes to the <code>country</code> parameter. The country and region codes that can be passed to the <code>country</code> parameter correspond to the coded values from the <code>iso2c</code>, <code>iso3c</code>, <code>regionID</code>, <code>adminID</code>, and <code>incomeID</code> from the <code>countries</code> data frame in <code>wb_cachelist</code> or the return of <code>wbcache()</code>. Any values from the above columns can mixed together and passed to the same call</p>
+<pre class="r"><code>library(wbstats)
+
+# Population, total
+# country values: iso3c, iso2c, regionID, adminID, incomeID
+pop_data &lt;- wb(country = c(&quot;ABW&quot;,&quot;AF&quot;, &quot;SSF&quot;, &quot;ECA&quot;, &quot;NOC&quot;),
+               indicator = &quot;SP.POP.TOTL&quot;, startdate = 2012, enddate = 2012)</code></pre>
+<pre><code>## Warning in wb(country = c(&quot;ABW&quot;, &quot;AF&quot;, &quot;SSF&quot;, &quot;ECA&quot;, &quot;NOC&quot;), indicator =
+## &quot;SP.POP.TOTL&quot;, : The following country values are not valid and are being
+## excluded from the request: NOC</code></pre>
+<pre class="r"><code>head(pop_data)</code></pre>
+<pre><code>##   iso3c date     value indicatorID         indicator iso2c
+## 1   ABW 2012    102577 SP.POP.TOTL Population, total    AW
+## 2   AFG 2012  30696958 SP.POP.TOTL Population, total    AF
+## 3   ECA 2012 407706585 SP.POP.TOTL Population, total    7E
+## 4   SSF 2012 926548177 SP.POP.TOTL Population, total    ZG
+##                                         country
+## 1                                         Aruba
+## 2                                   Afghanistan
+## 3 Europe &amp; Central Asia (excluding high income)
+## 4                            Sub-Saharan Africa</code></pre>
+<p>Queries with multiple indicators return the data in a long data format by default</p>
+<pre class="r"><code>library(wbstats)
+
+pop_gdp_long &lt;- wb(country = c(&quot;US&quot;, &quot;NO&quot;), indicator = c(&quot;SP.POP.TOTL&quot;, &quot;NY.GDP.MKTP.CD&quot;),
+                   startdate = 1971, enddate = 1971)
+
+head(pop_gdp_long)</code></pre>
+<pre><code>##   iso3c date        value    indicatorID         indicator iso2c
+## 1   NOR 1971 3.903039e+06    SP.POP.TOTL Population, total    NO
+## 2   USA 1971 2.076610e+08    SP.POP.TOTL Population, total    US
+## 3   NOR 1971 1.458311e+10 NY.GDP.MKTP.CD GDP (current US$)    NO
+## 4   USA 1971 1.167770e+12 NY.GDP.MKTP.CD GDP (current US$)    US
+##         country
+## 1        Norway
+## 2 United States
+## 3        Norway
+## 4 United States</code></pre>
+<p>or a wide format if parameter <code>return_wide = TRUE</code>. Note that to necessitate a this transformation the <code>indicator</code> column is dropped.</p>
+<pre class="r"><code>library(wbstats)
+
+pop_gdp_wide &lt;- wb(country = c(&quot;US&quot;, &quot;NO&quot;), indicator = c(&quot;SP.POP.TOTL&quot;, &quot;NY.GDP.MKTP.CD&quot;),
+                   startdate = 1971, enddate = 1971, return_wide = TRUE)
+
+head(pop_gdp_wide)</code></pre>
+<pre><code>##   iso3c date iso2c       country NY.GDP.MKTP.CD SP.POP.TOTL
+## 1   NOR 1971    NO        Norway   1.458311e+10     3903039
+## 2   USA 1971    US United States   1.167770e+12   207661000</code></pre>
+<div id="using-mrv" class="section level3">
+<h3>Using <code>mrv</code></h3>
+<p>If you do not know the latest date an indicator you are interested in is available for you country you can use the <code>mrv</code> instead of <code>startdate</code> and <code>enddate</code>. <code>mrv</code> stands for most recent value and takes a <code>integer</code> corresponding to the number of most recent values you wish to return</p>
+<pre class="r"><code>library(wbstats)
+
+eg_data &lt;- wb(country = c(&quot;IN&quot;), indicator = &#39;EG.ELC.ACCS.ZS&#39;, mrv = 1)
+
+eg_data</code></pre>
+<pre><code>##   iso3c date    value    indicatorID
+## 1   IND 2014 79.16926 EG.ELC.ACCS.ZS
+##                                 indicator iso2c country
+## 1 Access to electricity (% of population)    IN   India</code></pre>
+<p>You can increase this value and it will return no more than the <code>mrv</code> value. However, if <code>mrv</code> is greater than the number of available data it will return less</p>
+<pre class="r"><code>library(wbstats)
+
+eg_data &lt;- wb(country = c(&quot;IN&quot;), indicator = &#39;EG.ELC.ACCS.ZS&#39;, mrv = 10)
+
+eg_data</code></pre>
+<pre><code>##    iso3c date    value    indicatorID
+## 1    IND 2014 79.16926 EG.ELC.ACCS.ZS
+## 2    IND 2013 77.73752 EG.ELC.ACCS.ZS
+## 3    IND 2012 79.90000 EG.ELC.ACCS.ZS
+## 4    IND 2011 67.60000 EG.ELC.ACCS.ZS
+## 5    IND 2010 76.30000 EG.ELC.ACCS.ZS
+## 6    IND 2009 75.00000 EG.ELC.ACCS.ZS
+## 7    IND 2008 70.61525 EG.ELC.ACCS.ZS
+## 8    IND 2007 69.21004 EG.ELC.ACCS.ZS
+## 9    IND 2006 67.90000 EG.ELC.ACCS.ZS
+## 10   IND 2005 66.43195 EG.ELC.ACCS.ZS
+##                                  indicator iso2c country
+## 1  Access to electricity (% of population)    IN   India
+## 2  Access to electricity (% of population)    IN   India
+## 3  Access to electricity (% of population)    IN   India
+## 4  Access to electricity (% of population)    IN   India
+## 5  Access to electricity (% of population)    IN   India
+## 6  Access to electricity (% of population)    IN   India
+## 7  Access to electricity (% of population)    IN   India
+## 8  Access to electricity (% of population)    IN   India
+## 9  Access to electricity (% of population)    IN   India
+## 10 Access to electricity (% of population)    IN   India</code></pre>
+</div>
+<div id="using-gapfill-true" class="section level3">
+<h3>Using <code>gapfill = TRUE</code></h3>
+<p>An additional parameter that can be used along with <code>mrv</code> is <code>gapfill</code>. <code>gapfill</code> allows you to “fill-in” the values between actual observations. The “filled-in” value for an otherwise missing date is the last observed value carried forward.The only difference in the data call below from the one directly above is <code>gapfill = TRUE</code> (the default is <code>FALSE</code>). Note the very important difference</p>
+<pre class="r"><code>library(wbstats)
+
+eg_data &lt;- wb(country = c(&quot;IN&quot;), indicator = &#39;EG.ELC.ACCS.ZS&#39;, mrv = 10, gapfill = TRUE)
+
+eg_data</code></pre>
+<pre><code>##    iso3c date    value    indicatorID
+## 1    IND 2017 79.16926 EG.ELC.ACCS.ZS
+## 2    IND 2016 79.16926 EG.ELC.ACCS.ZS
+## 3    IND 2015 79.16926 EG.ELC.ACCS.ZS
+## 4    IND 2014 79.16926 EG.ELC.ACCS.ZS
+## 5    IND 2013 77.73752 EG.ELC.ACCS.ZS
+## 6    IND 2012 79.90000 EG.ELC.ACCS.ZS
+## 7    IND 2011 67.60000 EG.ELC.ACCS.ZS
+## 8    IND 2010 76.30000 EG.ELC.ACCS.ZS
+## 9    IND 2009 75.00000 EG.ELC.ACCS.ZS
+## 10   IND 2008 70.61525 EG.ELC.ACCS.ZS
+##                                  indicator iso2c country
+## 1  Access to electricity (% of population)    IN   India
+## 2  Access to electricity (% of population)    IN   India
+## 3  Access to electricity (% of population)    IN   India
+## 4  Access to electricity (% of population)    IN   India
+## 5  Access to electricity (% of population)    IN   India
+## 6  Access to electricity (% of population)    IN   India
+## 7  Access to electricity (% of population)    IN   India
+## 8  Access to electricity (% of population)    IN   India
+## 9  Access to electricity (% of population)    IN   India
+## 10 Access to electricity (% of population)    IN   India</code></pre>
+<p>Because <code>gapfill</code> returns data that does reflect actual observed values, use this option with care.</p>
+</div>
+<div id="using-posixct-true" class="section level3">
+<h3>Using <code>POSIXct = TRUE</code></h3>
+<p>The default format for the <code>date</code> column is not conducive to sorting or plotting, especially when downloading sub annual data, such as monthly or quarterly data. To address this, if <code>TRUE</code>, the <code>POSIXct</code> parameter adds the additional columns <code>date_ct</code> and <code>granularity</code>. <code>date_ct</code> converts the default date into a <code>POSIXct</code>. <code>granularity</code> denotes the time resolution that the date represents. This option requires the use of the package <code>lubridate (&gt;= 1.5.0)</code>. If <code>POSIXct = TRUE</code> and <code>lubridate (&gt;= 1.5.0)</code> is not available, a <code>warning</code> is produced and the option is ignored</p>
+<pre class="r"><code>library(wbstats)
+
+oil_data &lt;- wb(indicator = &quot;CRUDE_BRENT&quot;, mrv = 10, freq = &quot;M&quot;, POSIXct = TRUE)
+
+head(oil_data)</code></pre>
+<pre><code>##   iso3c    date value indicatorID                          indicator iso2c
+## 1   WLD 2017M10 57.62 CRUDE_BRENT Crude oil, Brendt, $/bbl, nominal$    1W
+## 2   WLD 2017M09 55.16 CRUDE_BRENT Crude oil, Brendt, $/bbl, nominal$    1W
+## 3   WLD 2017M08 51.37 CRUDE_BRENT Crude oil, Brendt, $/bbl, nominal$    1W
+## 4   WLD 2017M07 48.69 CRUDE_BRENT Crude oil, Brendt, $/bbl, nominal$    1W
+## 5   WLD 2017M06 46.89 CRUDE_BRENT Crude oil, Brendt, $/bbl, nominal$    1W
+## 6   WLD 2017M05 50.87 CRUDE_BRENT Crude oil, Brendt, $/bbl, nominal$    1W
+##   country    date_ct granularity
+## 1   World 2017-10-01     monthly
+## 2   World 2017-09-01     monthly
+## 3   World 2017-08-01     monthly
+## 4   World 2017-07-01     monthly
+## 5   World 2017-06-01     monthly
+## 6   World 2017-05-01     monthly</code></pre>
+<p>The <code>POSIXct = TRUE</code> option makes plotting and sorting dates much easier.</p>
+<pre class="r"><code>library(wbstats)
+library(ggplot2)
+
+oil_data &lt;- wb(indicator = c(&quot;CRUDE_DUBAI&quot;, &quot;CRUDE_BRENT&quot;, &quot;CRUDE_WTI&quot;, &quot;CRUDE_PETRO&quot;),
+               startdate = &quot;2012M01&quot;, enddate = &quot;2014M12&quot;, freq = &quot;M&quot;, POSIXct = TRUE)
+
+ggplot(oil_data, aes(x = date_ct, y = value, colour = indicator)) + geom_line(size = 1) +
+  labs(title = &quot;Crude Oil Price Comparisons&quot;, x = &quot;Date&quot;, y = &quot;US Dollars&quot;)</code></pre>
+<p><img src="/post/2018-01-05-getting-started-with-wbstats-a-world-bank-r-package_files/figure-html/vig-ex-posixct-1-1.png" width="720" /></p>
+<p>The <code>POSIXct = TRUE</code> option also makes plotting time series with different time coverage seamless</p>
+<pre class="r"><code>library(wbstats)
+library(ggplot2)
+
+# querying seperate for differing time coverage example
+gold_data &lt;- wb(indicator = &quot;GOLD&quot;, mrv = 120, freq = &quot;M&quot;, POSIXct = TRUE)
+plat_data &lt;- wb(indicator = &quot;PLATINUM&quot;, mrv = 60, freq = &quot;M&quot;, POSIXct = TRUE)
+
+metal_data &lt;- rbind(gold_data, plat_data)
+
+ggplot(metal_data, aes(x = date_ct, y = value, colour = indicator)) + geom_line(size = 1) +
+  labs(title = &quot;Precious Metal Prices&quot;, x = &quot;Date&quot;, y = &quot;US Dollars&quot;)</code></pre>
+<p><img src="/post/2018-01-05-getting-started-with-wbstats-a-world-bank-r-package_files/figure-html/vig-ex-posixct-2-1.png" width="720" /></p>
+</div>
+</div>
+</div>
+<div id="some-sharp-corners" class="section level1">
+<h1>Some Sharp Corners</h1>
+<p>There are a few behaviors of the World Bank API that being aware of could help explain some potentially unexpected results. These results are known but no special actions are taken to mitigate them as they are the result of the API itself and artifically limiting the inputs or results could potentially causes problems or create unnecessary rescrictions in the future.</p>
+<div id="most-recent-values" class="section level2">
+<h2>Most Recent Values</h2>
+<p>If you use the <code>mrv</code> parameter in <code>wb()</code> with mutliple countries or regions, it searches for the most recent dates for which any country or region in your selection has data and then returns the data for those dates. In other words the <code>mrv</code> value is not determined on a country by country basis, rather it is determined across the entire selection.</p>
+<pre class="r"><code>library(wbstats)
+
+per_data_1 &lt;- wb(country = &quot;all&quot;, indicator = &#39;per_lm_ac.cov_pop_tot&#39;, mrv = 1)
+per_data_1</code></pre>
+<pre><code>##     iso3c date     value  indicatorID                          indicator
+## 17    ARM 2014 0.8872044 Performance. Coverage (%) - Active Labor Market
+## 35    CMR 2014 0.9365870 Performance. Coverage (%) - Active Labor Market
+## 70    IDN 2014 4.2099258 Performance. Coverage (%) - Active Labor Market
+## 155   VNM 2014 8.9763930 Performance. Coverage (%) - Active Labor Market
+##     iso2c   country
+## 17     AM   Armenia
+## 35     CM  Cameroon
+## 70     ID Indonesia
+## 155    VN   Vietnam</code></pre>
+<pre class="r"><code>per_data_2 &lt;- wb(country = &quot;all&quot;, indicator = &#39;per_lm_ac.cov_pop_tot&#39;, mrv = 2)
+per_data_2</code></pre>
+<pre><code>##     iso3c date      value  indicatorID                          indicator
+## 33    ARM 2014  0.8872044 Performance. Coverage (%) - Active Labor Market
+## 34    ARM 2013  3.2058376 Performance. Coverage (%) - Active Labor Market
+## 68    KHM 2013  1.2168315 Performance. Coverage (%) - Active Labor Market
+## 69    CMR 2014  0.9365870 Performance. Coverage (%) - Active Labor Market
+## 76    CHL 2013 20.4540718 Performance. Coverage (%) - Active Labor Market
+## 139   IDN 2014  4.2099258 Performance. Coverage (%) - Active Labor Market
+## 196   MDA 2013  0.9159697 Performance. Coverage (%) - Active Labor Market
+## 309   VNM 2014  8.9763930 Performance. Coverage (%) - Active Labor Market
+##     iso2c   country
+## 33     AM   Armenia
+## 34     AM   Armenia
+## 68     KH  Cambodia
+## 69     CM  Cameroon
+## 76     CL     Chile
+## 139    ID Indonesia
+## 196    MD   Moldova
+## 309    VN   Vietnam</code></pre>
+</div>
+<div id="searching-in-other-languages" class="section level2">
+<h2>Searching in other languages</h2>
+<p>Not all data sources support all languages. If an indicator does not have a translation for a particular language, the non-supported fields will return as <code>NA</code>. This could potentially result in a differing number of matching indicators from <code>wbsearch()</code></p>
+<pre class="r"><code>library(wbstats)
+
+# english
+cache_en &lt;- wbcache()
+sum(is.na(cache_en$indicators$indicator))</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code># spanish
+cache_es &lt;- wbcache(lang = &quot;es&quot;)
+sum(is.na(cache_es$indicators$indicator))</code></pre>
+<pre><code>## [1] 15084</code></pre>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://www.worldbank.org/" class="uri">http://www.worldbank.org/</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="http://data.worldbank.org/developers" class="uri">http://data.worldbank.org/developers</a><a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
