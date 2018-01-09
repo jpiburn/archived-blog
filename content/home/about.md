@@ -20,7 +20,7 @@ weight = 5
 [[education.courses]]
   course = "PhD in Data Science & Engineering"
   institution = "University of Tennessee"
-  year = 2022
+  year = 2021
 
 [[education.courses]]
   course = "MS in Geography"
