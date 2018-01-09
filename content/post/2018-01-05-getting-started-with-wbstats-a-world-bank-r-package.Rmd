@@ -1,7 +1,7 @@
 ---
 title: Getting Started with wbstats A World Bank R Package
 author: Jesse Piburn
-date: '2018-01-05'
+date: '2018-01-08'
 slug: getting-started-with-wbstats-a-world-bank-r-package
 categories:
   - R
