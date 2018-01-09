@@ -2,13 +2,13 @@
 title: Getting Started with wbstats A World Bank R Package
 author: Jesse Piburn
 date: '2018-01-08'
-slug: getting-started-with-wbstats-a-world-bank-r-package
 categories:
   - R
   - wbstats
 tags:
   - R
   - wbstats
+slug: getting-started-with-wbstats-a-world-bank-r-package
 ---
 
 The [World Bank](http://www.worldbank.org/) is a tremendous source of global socio-economic data; spanning several decades and dozens of topics, it has the potential to shed light on numerous global issues. The `wbstats` R package provides access to this data.
